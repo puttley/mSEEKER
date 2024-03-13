@@ -52,6 +52,27 @@ def setup():
 #esp.osdebug(None)
 #import webrepl
 #webrepl.start()
+#
+#start bluetooth on boot up
+import ble_start
 """
         )
+
+    with open("bt_config.py", "w") as f:
+        f.write(
+            """\
+# This file is executed on every boot (sets the name of the ble advertising on the ESP32)
+bt_name ="SEEKER-yoyo"
+"""
+        )
+
     return fs
+
+
+
+
+
+
+
+
+

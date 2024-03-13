@@ -1,4 +1,5 @@
 freeze("$(PORT_DIR)/modules")
+freeze("$(PORT_DIR)/modules/seeker_lib")
 include("$(MPY_DIR)/extmod/asyncio")
 
 # Useful networking-related packages.
