@@ -66,13 +66,11 @@ bt_name ="SEEKER-yoyo"
 """
         )
 
+    with open("main.py", "w") as f:
+        f.write(
+        """\
+# Code to run on startup goes in 'main.py'
+"""
+        )
+
     return fs
-
-
-
-
-
-
-
-
-

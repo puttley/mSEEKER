@@ -1,6 +1,7 @@
 freeze("$(PORT_DIR)/modules")
 #freeze("$(PORT_DIR)/modules/seeker_lib")
 include("$(MPY_DIR)/extmod/asyncio")
+#include("$(MPY_DIR)/extmod/seeker_lib")
 
 # Useful networking-related packages.
 require("bundle-networking")
