@@ -1,7 +1,7 @@
 # MicroPython module for Pitsco SEEKER Middle School Computer Science
 # # Written by Paul W. Uttley
 # Pitsco Education
-# 12/03/2023
+# 03/25/2024
 # Version 1.0
 ##################### DO NOT MODIFY THIS LIBRARY #####################
 
@@ -354,7 +354,44 @@ def getTHSensor(port, measure = 'none', unit = 'none'):
         except:
             print('sensor error or not plugged into port')
             return 0
-        return h	# humidity   
+        return h	# humidity
+    
+def getRotarySensor(port = 0):
+    if port == 1:
+        input_pin = ADC(Pin(4))
+        input_pin.atten(ADC.ATTN_11DB) # Full range: 3.3v
+        value = input_pin.read()
+        scaled_value = map_value(value, 0, 4095, 100, 0)
+        return int(scaled_value) # return 0 - 100
+    if port == 2:
+        input_pin = ADC(Pin(6))
+        input_pin.atten(ADC.ATTN_11DB) # Full range: 3.3v
+        value = input_pin.read()
+        scaled_value = map_value(value, 0, 4095, 100, 0)
+        return int(scaled_value) # return 0 - 100
+    if port == 3:
+        input_pin = ADC(Pin(9))
+        input_pin.atten(ADC.ATTN_11DB) # Full range: 3.3v
+        value = input_pin.read()
+        scaled_value = map_value(value, 0, 4095, 100, 0)
+        return int(scaled_value) # return 0 - 100
+    if port == 4:
+        input_pin = ADC(Pin(10))
+        input_pin.atten(ADC.ATTN_11DB) # Full range: 3.3v
+        value = input_pin.read()
+        scaled_value = map_value(value, 0, 4095, 100, 0)
+        return int(scaled_value) # return 0 - 100
+    if port == 5:
+        try:
+            input_pin = ADC(Pin(44))
+        except:
+            print('port 5 cannot be used as analog input') #invalid when wireless is on
+            return -1
+        input_pin.atten(ADC.ATTN_11DB) # Full range: 3.3v
+        value = input_pin.read()
+        scaled_value = map_value(value, 0, 4095, 100, 0)
+        return int(scaled_value) # return 0 - 100
+        
         
 '''
 analog range is 0 - 4095
@@ -410,7 +447,7 @@ def getSensorPortValue(port, AD = 'digital'):
                 input_pin = ADC(Pin(44))
             except:
                 print('port 5 cannot be used as analog input')
-                return
+                return -1
             input_pin.atten(ADC.ATTN_11DB) # Full range: 3.3v
             value = input_pin.read()
             return value # return analog
